@@ -1,0 +1,178 @@
+#MainTainer:Junru Gong <gongjunru@sjtu.edu.cn>
+current situation: 25/33
+
+ssh -p2220 bandit{x}@176.9.9.172
+privatekey connection:
+ssh -p 2220 -i ./id_rsa bandit14@bandit.labs.overthewire.org
+
+
+x=0:passwd:bandit0
+just single practice of ssh
+
+x=01:passwd:boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+just single practice of vim
+
+x=02:passwd:CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+the file name is '-', what a joke
+vim ./-
+
+x=03:passwd:UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+the file name contains blanks
+vim 'filename'
+
+x=04:passwd:pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+its name starts with .  a hidden file
+ls -a
+
+x=05:passwd:koReBOKuIDDepwhWk7jZC0RTdopnAYKh
+it is mixed with several files containing meaningless letters and signals
+boring work
+
+x=06:passwd:DXjZPULLxYr17uwoI01bNLQbtFemEgo7
+its size is 1033bytes
+find . -size 1033c
+
+x=07:passwd:HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+hard practice of find
+find / -size 33c -uid 11007
+then search a long list of "Permission denied" 
+until you find a file that was opened successfully
+
+x=08:passwd:cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+easy test of grep
+grep 'millionth' ./data/txt
+
+x=09:passwd:UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+occur only once..
+sorry
+sort then find it roughly...
+sadsad QAQ
+
+x=10:passwd:truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+complex grep question
+password follows"========" and real password groups were placed at the last...
+grep -a -E "={5}" data.txt
+Yeah!
+
+x=11:passwd:IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+base64 encoded.
+About base64:https://blog.csdn.net/weixin_44259720/article/details/109784917
+with a tiny program
+
+x=12:passwd:5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+ROT13 encoded.
+About Rot13:https://baike.baidu.com/item/ROT13/7086083?fr=aladdin
+with a tiny program, but it reminds me of my poor python programming level...
+
+x=13:passwd:8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+it reminds me...
+programming is a binary world...not hex world.
+hex->binaryGZIP->binaryBZIP2->binaryGZIP->tar->tar->bzip2->tar->gzip->ASCII
+crazy!
+
+x=14:passwd:4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+use ssh private key to login, instead of password
+ssh -p 2220 -i ./id_rsa bandit14@bandit.labs.overthewire.org
+
+x=15:passwd:BfMYroe26WYalil77FoDi9qh59eK5xNr
+nc operation:find port 22(for ssh) 30000(for level15) and 113 open
+when shall I meet port113? XD
+connect localhost in User:bandit14
+nc -nvv(use ip&&visualable) 127.0.0.1(localhost) 30000(port)
+
+x=16:passwd:cluFn7wTiGryunymYOu4RcffSxQluehd
+connect a port 30001 which is not accessable
+i don't really know its tricks...
+maybe it send passwd with an "EOF"
+but openssl s_client is strong enough ,so..
+openssl s_client -host 127.0.0.1 -port 30001
+>>>passwd of 15
+
+x=17:passwd:xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn
+scan probable ports:
+nc -v -z -w2 127.0.0.1 31000-32000
+gain:
+31960(nope) 31790(receive 0) 31691(nope) 31518(timeout) 31046(nope)
+then test one by one use nc
+maybe 31790, use openssl
+Nice, gain its private key
+
+x=18:passwd:kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+boring game
+the only one different line:
+sort passwords.new passwords.old
+then could easily find different two passwords, choose one, honey
+kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd correct password, but he told me Byebye, fuck
+or
+w0Yfolrc5bwjS4qw5mq1nnQi6mF03bii wrong password
+
+x=19:passwd:IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+login bandit18 with ssh will cause "byebye"...fuck him up
+let me find a new way to login!
+no new way
+but ssh could login with some orders done:
+like:
+ssh -p2220 bandit18@176.9.9.172 "cat ./readme"
+funny,uh
+
+x=20:passwd:GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+setuid binary! a new friend, its author is bandit20
+when I use setuid program, my id will change into the author of setuid program!
+wonderful!
+./bandit20-do cat /etc/bandit_pass/bandit20
+
+x=21:passwd:gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+setuid binary!a old friend, its author is bandit21
+use nc to send passwd 20 to a port, then use suconnect to ping that port to gain passwd20
+nc operation:
+nc -l -p (port) < /etc/bandit_pass/bandit20 &
+delieve passwd in backend
+then:
+./suconnect (port)
+
+x=22:passwd:Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+learn cron
+hhhhh, i found the answer
+in/usr/bin/cronjob_bandit22.sh, i found:
+#!/bin/bash                                                                                      
+chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+
+in /tmp/t7..., i found:
+Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+
+x=23:passwd:jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+read a shell:/usr/bin/cronjob_bandit23.sh
+
+#!/bin/bash
+
+myname=$(whoami)
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+
+echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+
+cat /etc/bandit_pass/$myname > /tmp/$mytarget
+hide in /tmp/8169b67bd894ddbb4412f91573b38db3
+
+he is not helping me, he is teaching me...
+Thank you.
+I gain /tmp/8ca319486bfbbc3663ea0fbe81326349
+and inside is jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+
+x=24:passwd:UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
+i am tired.
+I cheat
+i found ./bandit23/test2.sh
+and then steel the password
+
+the official answer is:
+there is a .sh that will automatically run all the scripts and delete them, so you just need to write a script to gain the passwd, and wait for the automatical run cycle.
+
+x=25:passwd:uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
+write a shell to try 10000 times
+actually i don't know which time i get it either
+whatever
+
+x=26:passwd:
+my level of ssh is poor
+fuck!
