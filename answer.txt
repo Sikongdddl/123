@@ -1,5 +1,5 @@
 #MainTainer:Junru Gong <gongjunru@sjtu.edu.cn>
-current situation: 25/33
+current situation: 27/33
 
 ssh -p2220 bandit{x}@176.9.9.172
 privatekey connection:
@@ -172,7 +172,68 @@ x=25:passwd:uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
 write a shell to try 10000 times
 actually i don't know which time i get it either
 whatever
+(in the way to bandit26, I found the pin:2588)
 
-x=26:passwd:
-my level of ssh is poor
-fuck!
+x=26:passwd:5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z
+learn SHLVL, more
+there is a ./bash_logout kill me every time i log in.
+But it only test the depth of shell, so i could open a new shell in shell, then login.
+nope, it detects the depth of server shell, not my local shell
+but I can cut the length of terminal,,,so that more operation will be stopped, then I can do my job!
+open a shell in more progress, then cat /etc/bandit_pass/bandit26
+
+x=27:passwd:3ba3118a22e93127a4ed485be72ef5ea
+after fucked bandit26, it is easy to use bandit27-do to gain the passwd of bandit27
+
+x=28:passwd:0ef186ac70e04ea33b4c1853d2526fa2
+practice git
+this repo has strong wall...I could not connect it out of the server.
+
+x=29:passwd:bbc96594b4e001778eee9975372716b2
+practice git 
+a fucking joke
+
+# Bandit Notes
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: xxxxxxxxxx
+
+view git log to find what happened
+use git show to find difference
+and then:
+commit edd935d60906b33f0619605abd1689808ccdd5ee
+Author: Morla Porla <morla@overthewire.org>
+Date:   Thu May 7 20:14:49 2020 +0200
+
+    fix info leak
+
+diff --git a/README.md b/README.md
+index 3f7cee8..5c6457b 100644
+--- a/README.md
++++ b/README.md
+@@ -4,5 +4,5 @@ Some notes for level29 of bandit.
+ ## credentials
+ 
+ - username: bandit29
+-- password: bbc96594b4e001778eee9975372716b2
++- password: xxxxxxxxxx
+ 
+x=30:passwd:5b90576bedb2cc04c86a9e924ce42faf
+change a branch
+
+x=31:passwd:47e603bb428404d265f59c42920d81e5
+git show-ref gain SHA-1:f17132340e8ee6c159e0a4a6bc6f80e1da3b1aea
+git show f171:47e603bb428404d265f59c42920d81e5
+
+x=32:passwd:56a9bf19c63d650ce78e6ec0354ee45e
+push a file
+
+x=33:passwd:c9c3199ddf4121b10cf581a98d51caee
+boring...
+$0 could open a new shell in force
+but I don't know it
+
+x=34:
