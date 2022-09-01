@@ -12,14 +12,14 @@ It is useful and fun enough for new programmer like me.
 How to start
 <h4>
 the url of wargame is: https://overthewire.org/wargames/bandit/
-I also put it in ./url.txt
+I also put it in ./url.txt.
 There are several war games in it, and both the administrator and I suppose you to start by this bandit game.
 The introduction of website is enough, keep patience!
 I put all the password and explain why to do that in ./answer.txt.
 If you have any trouble, it will do you a good favor.
 
 <h2>
-What it practice
+What it practices
 <h4>
 ssh; vim; "-"and"." in file name; ls; size; find; grep; base64; ROT13; file; gzip,bzip,tar; nc; openssl; 
 <h4>
