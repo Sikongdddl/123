@@ -20,10 +20,11 @@ If you have any trouble, it will do you a good favor.
 
 <h2>
 What it practice
+<h4>
 ssh; vim; "-"and"." in file name; ls; size; find; grep; base64; ROT13; file; gzip,bzip,tar; nc; openssl; 
-<h2>
+<h4>
 file which could change user; cron; shell; echo; SHLVL; more; git; $0
-<h2>
+<h4>
 Your patience, and smart idea,XD
 
 <h4>
